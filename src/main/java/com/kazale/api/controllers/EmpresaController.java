@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +47,7 @@ public class EmpresaController {
 	 * @throws Exception 
 	 */
 	@PostMapping
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ResponseEntity<Response<EmpresaDTO>> cadastrarEmpresa(@Valid @RequestBody EmpresaDTO empresaDTO, BindingResult result){
 		Response<EmpresaDTO> response = new Response<EmpresaDTO>();
 		
